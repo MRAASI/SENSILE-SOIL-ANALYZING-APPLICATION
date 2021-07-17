@@ -1,4 +1,4 @@
-# SENSILE-SOIL-ANALYZING-APPLICATION---ML-
+# SENSILE-SOIL-ANALYZING-APPLICATION
 
 This project mainly focuses on the how the soil condition can be predicted by using some related information and recommends the crop to the user. It mainly depends on the soil metrics. The scope of this site is the user can able to predicting the soil condition and the crop which can be planted.
 
