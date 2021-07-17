@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SENSILE SOIL ANALYZING APPLICATION</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+</head>
+<body>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+body{
+  background: #60C43b;
+  padding: 0 10px;
+}
+.title{
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	padding: 20px 0px 0px 0px;
+}
+
+.wrapper{
+  max-width: 1000px;
+  width: 100%;
+  background: #60c43b;
+  margin: 20px auto;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+  padding: 30px;
+}
+
+.wrapper .title{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.wrapper .form{
+  width: 100%;
+}
+
+.wrapper .form .inputfield{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper .form .inputfield label{
+   width: 200px;
+   color: black;
+   margin-right: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.wrapper .form .inputfield .input{
+  width: 100%;
+  outline: none;
+  border: 1px solid #d5dbd9;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.wrapper .form .inputfield .custom_select{
+  position: relative;
+  width: 100%;
+  height: 37px;
+}
+
+.wrapper .form .inputfield .custom_select:before{
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  border: 8px solid;
+  border-color: #d5dbd9 transparent transparent transparent;
+  pointer-events: none;
+}
+
+.wrapper .form .inputfield .custom_select select{
+  -webkit-appearance: none;
+  -moz-appearance:   none;
+  appearance:        none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 8px 10px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 1px solid #d5dbd9;
+  border-radius: 3px;
+}
+
+
+.wrapper .form .inputfield .input:focus,
+.wrapper .form .inputfield .textarea:focus,
+.wrapper .form .inputfield .custom_select select:focus{
+  border: 1px solid #fec107;
+}
+
+.wrapper .form .inputfield .btn{
+  width: 100%;
+   padding: 10px 10px;
+  font-size: 20px; 
+  border: 0px;
+  background: white;
+  cursor: pointer;
+  border-radius: 2px;
+  outline: none;
+}
+
+.wrapper .form .inputfield .btn:hover{
+  background: #60C43B;
+}
+
+.wrapper .form .inputfield:last-child{
+  margin-bottom: 0;
+}
+
+@media (max-width:420px) {
+  .wrapper .form .inputfield{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wrapper .form .inputfield label{
+    margin-bottom: 5px;
+  }
+  .wrapper .form .inputfield.terms{
+    flex-direction: row;
+  }
+}
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-height: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+  .wrapper{
+   max-width: 900px;
+  width: 100%;
+  
+  }
+  .wrapper .form .inputfield{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+  .wrapper .form{
+  width: 100%;
+}
+.wrapper .form .inputfield{
+	display: flex;
+	align-items: center;
+
+  }
+  .wrapper .form .inputfield label{
+  
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .wrapper .form .inputfield .input{
+  padding: 25px 10px;
+  }
+  .wrapper .form .inputfield .custom_select{
+  height: 60px;
+  }
+  
+  .wrapper .form .inputfield.terms{
+    flex-direction: row;
+  }
+  
+  }
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-height: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+  .wrapper{
+  max-width: 1000px;
+  width: 100%;
+  
+  }
+  .wrapper .form .inputfield{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+  .wrapper .form{
+  max-width: 1000px;
+  width: 100%;
+}
+.wrapper .form .inputfield{
+	display: flex;
+	align-items: center;
+
+  }
+  .wrapper .form .inputfield label{
+  
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+  .wrapper .form .inputfield .input{
+  padding: 35px 20px;
+  }
+  .wrapper .form .inputfield .custom_select{
+  height: 60px;
+  }
+  .wrapper .form .inputfield .custom_select option{
+  width: auto;
+  }
+  .wrapper .form .inputfield.terms{
+    flex-direction: row;
+  }
+  }
+</style>
+<form onsubmit="return verifyAge()"  action="{{url_for('predict')}}"method="post">
+</head>
+
+<body>
+<div class="title">SENSILE SOIL ANALYZING APPLICATION</div> 
+<form  action="{{ url_for('predict')}}"method="post">
+<h2 style="text-align:center;color:white;">{{ prediction_text }}</h1>
+<div class="wrapper">
+<div class="title">Enter Details</div>
+<div class="form">
+					
+					
+					<div class="inputfield">
+					<label>NITROGEN</label>
+					<input class="input" id="NITROGEN" type="number" name="NITROGEN" placeholder="Nitrogen range(1,120)" min="1" max="120" required="required"/>
+					</div>
+					
+					<div class="inputfield">
+					<label>PHOSPHORUS</label>
+					<input class="input" id="PHOSPHORUS" type="number" name="PHOSPHORUS" placeholder="PHOSPHORUS in range(1,120)" min="1" max="120" required="required"/>
+					</div>
+					
+					<div class="inputfield">
+					<label>CALCIUM</label>
+					<input class="input" id="CALCIUM" type="number" name="CALCIUM" placeholder="CALCIUM in range(1,120)" min="1" max="120" required="required"/>
+					</div>
+					
+					<div class="inputfield">
+					<label>TEMPERATURE</label>
+					<input class="input" id="TEMPERATURE" type="number" name="TEMPERATURE" placeholder="TEMPERATURE in range(0,120)" min="0.0" max="120.0" required="required"/>
+					</div>
+					
+					<div class="inputfield">
+					<label>HUMIDITY</label>
+					<input class="input" id="HUMIDITY" type="number" name="HUMIDITY" placeholder="HUMIDITY IN % range(0,120)" min="0.0" max="120.0" required="required"/>
+					</div>
+					
+					<div class="inputfield">
+					<label>PH Value</label>
+					<input class="input" id="PH VALUE" type="number" name="PH VALUE" placeholder="PH VALUE in range(0,14)" min="0" max="14" required="required"/>
+					</div>
+					
+					<div class="inputfield">
+					<label>RAINFALL </label>
+					<input class="input" id="RAINFALL" type="number" name="RAINFALL" placeholder="RAINFALL in mm range(0,120)" min="15" max="120" required="required"/>
+					</div>
+					
+					
+					
+					<div class="inputfield">
+					<button type="submit" value="Predict" class="btn"><strong>Predict</strong></button></a>
+					</div>
+					
+					
+					
+					
+		<p id="NITROGEN" class="paragraph"></p> 
+		<p id="PHOSPHORUS" class="paragraph"></p>  
+		<p id="CALCIUM" class="paragraph"></p>
+		<p id="TEMPERATURE" class="paragraph"></p>
+		<p id="HUMIDITY" class="paragraph"></p>
+		<p id="PH VALUE" class="paragraph"></p>
+		<p id="RAINFALL" class="RAINFALL"></p>
+		
+		</div>
+		</div>
+	</form>
+	
+	
+<script>
+function verifyAge() {
+  
+  let x = document.getElementById("NITROGEN").value;
+  let f = document.getElementById("NITROGEN")
+
+  let y = document.getElementById("PHOSPHORUS").value;
+  let g = document.getElementById("PHOSPHORUS");
+
+  let z = document.getElementById("CALCIUM").value;
+  let h = document.getElementById("CALCIUM");
+
+  let a = document.getElementById("TEMPERATURE").value;
+  let i = document.getElementById("TEMPERATURE");
+
+  let b = document.getElementById("HUMIDITY").value;
+  let j = document.getElementById("HUMIDITY");
+
+  let c = document.getElementById("PH VALUE").value;
+  let k = document.getElementById("PH VALUE");
+
+  let d = document.getElementById("RAINFALL").value;
+  let l = document.getElementById("RAINFALL");
+
+  
+  if (isNaN(x) || x < 1 || x > 120) {
+    alert("NITROGEN must be 1 to 120");
+	f.style.border="solid white 3px";
+	return false;
+  } 
+  else if (isNaN(y) || y < 0 || y > 120) {
+    alert("PHOSPHORUS must be 1 to 120");
+	g.style.border="solid white 3px";
+	return false;
+  } 
+  else if (isNaN(z) || z < 1 || z > 120) {
+    alert("CALCIUM must be 1 to 120");
+	h.style.border="solid white 3px";
+	return false;
+	
+  } 
+  else if (isNaN(a) || a < 0.0 || a > 120.0) {
+    alert("TEMPERATURE must be 50 to 250");
+	i.style.border="solid white 3px";
+	return false;
+	
+  } 
+  else if (isNaN(b) || b < 0.0 || b > 120.0) {
+    alert("HUMIDITY must be 50 to 140");
+	j.style.border="solid white 3px";
+	return false;
+	
+  } 
+  else if (isNaN(c) || c < 0 || c > 44) {
+    alert("PH VALUE must be 1 to 14");
+	k.style.border="solid white 3px";
+	return false;
+	
+  } 
+  else if (isNaN(d) || d < 15 || d > 120) {
+    alert("RAINFALL must be 15 to 120");
+	l.style.border="solid white 3px";
+	return false;
+	
+  } 
+  
+  else{
+  return true;
+  }
+  
+}
+</script>
+
+</body>
+</html>
+					
